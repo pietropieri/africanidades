@@ -102,7 +102,7 @@ if __name__ == "__main__":
 
 
 ######### INICIANDO A INTERAÇÃO COM O TELEGRAM
-CHAVE_API = "6587636358:AAHwtoYJATb87gOrbHvJ16oZkuC8Vawk-8Msss"
+CHAVE_API = "6587636358:AAHwtoYJATb87gOrbHvJ16oZkuC8Vawk-8M"
 bot = telebot.TeleBot(CHAVE_API)
 
 for i in range(0,len(sentimentos)):
