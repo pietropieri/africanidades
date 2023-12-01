@@ -1,4 +1,4 @@
-# Nessa primeira etapa é necessário fazer a integração com o Google SHeets para coseguir pegar alguns dados
+# Nessa primeira etapa é necessário fazer a integração com o Google SHeets para coseguir pegar alguns dados 
 #Inicialmente é importado algumas bibliotecas do google
 
 from __future__ import print_function
