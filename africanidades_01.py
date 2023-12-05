@@ -76,6 +76,7 @@ if __name__ == "__main__":
   x = main(SAMPLE_RANGE_NAME_01,"NÃO","")
   # print(x)
   sentimento_x = x[0] 
+  # print(sentimento_x)
   estilos_x = x[1]
   # Teste topico estou adicionando "/" em cada sentimento para conseguir utilizar como comando no telegram
   tam_sentimento = range(len(sentimento_x))
@@ -121,17 +122,16 @@ for i in range(0,len(sentimentos)):
           bot.send_message(mensagem.chat.id,"Foi mal ainda não temos musicas para esse sentimento\
           para nos ajudar voce pode preencher esse forms: https://docs.google.com/forms/d/e/1FAIpQLSf0aYQ7TZSojoeX_Zd8_NnG3r09Tid6Ge6SC2VJzm9tEvm7LQ/viewform")
         else:        
-          bot.send_message(mensagem.chat.id,"Selecionamos algumas músicas que capturam perfeitamente o sentimento escolhido. Conte pra gente com qual vc se identificou mais. Aproveitee!!")
+          bot.send_message(mensagem.chat.id,"Selecionei algumas músicas que se relacionam com esse sentimento. Curta e aproveite essa experiência!")
           for n in range(0,5):
             if y[n][0] == '#N/A':
               break
             xy = y[n]
             print(xy)
-            texto_1 = "Como "
-            texto_1_1 ="° opção, temos:"+'\n'" A música: "
-            texto_2 = "Da(o) artista: "
-            texto_3 = "Uma forma de defini-la seria:"
-            texto_4 = "Seu estilo musical é:  "
+            texto_1 = "Nome da Música: "
+            texto_2 = "Artista: "
+            texto_3 = "Um trecho pra você conhecer: "
+            texto_4 = "Gênero Musical:  "
             # if xy[4] == "":
             texto_4_1 = " / "
             if len(xy) < 6 or xy[-1] == 'adicionar':
@@ -139,13 +139,19 @@ for i in range(0,len(sentimentos)):
             else:
               link = str(xy[-1])
 
-            bot.send_message(mensagem.chat.id,texto_1 + str(n+1) + texto_1_1 +xy[0]+'\n'+ texto_2 + xy[1]+'\n'+ texto_3 +'\n'+xy[2]+'\n'+texto_4+xy[3]+'\n'+link)
-            # time.sleep(1)
+            bot.send_message(mensagem.chat.id,texto_1 +xy[0]+'\n'+ texto_2 + xy[1]+'\n'+ texto_3 +'\n'+xy[2]+'\n'+texto_4+xy[3]+'\n'+link)
+        time.sleep(1)
+        bot.send_message(mensagem.chat.id, "Deseja explorar mais algum sentimento?   /Clique_aqui")
+        
+        time.sleep(1)
+        bot.send_message(mensagem.chat.id, "Agradecemos imensamente sua participação! Se você quiser compartilhar sua opinião, sugerir músicas ou falar sobre outros sentimentos, ficaríamos muito felizes em ouvir suas ideias. /Clique_Aqui ")
+@bot.message_handler(commands=["Clique_Aqui"])
+def escolha_01(mensagem): 
+  bot.reply_to(mensagem, "Você pode preencher este formulário: "+'\n'+"https://docs.google.com/forms/d/e/1FAIpQLSf0aYQ7TZSojoeX_Zd8_NnG3r09Tid6Ge6SC2VJzm9tEvm7LQ/viewform "+'\n'+" Sua contribuição é muito valiosa para nós! ")
+        # time.sleep(1)
             # bot.send_message(mensagem.chat.id,link)
             # else:
               # bot.send_message(mensagem.chat.id,texto_1 + str(n+1) + texto_1_1 +xy[0]+'\n'+ texto_2 + xy[1]+'\n'+ texto_3 +'\n'+xy[2]+'\n'+texto_4+xy[3]+'\n'+xy[5])
-            texto_5 = "Curtiu?? Caso queira ouvir clique "
-            teste = n+1
             # print("como"+ str(teste) +"opção")
           # bot.send_message(mensagem.chat.id,"Agora conta pra gente, quais das opções mais te agradou (clique na Opção a seguir:) \n /Opcao_1\n /Opcao_2\n /Opcao_3\n /Opcao_4\n /Opcao_5")
     
@@ -157,16 +163,22 @@ def verificar(mensagem):
 
 @bot.message_handler(func=verificar)
 def reponder(mensagem):
-   texxto = """
-    Olá! Obrigado por utilizar nosso Bot. Estamos aqui para celebrar e promover as Africanidades, uma cultura negra rica e influente que molda o mundo de diversas formas. Se você está interessado em explorar músicas relacionadas a essa cultura, está no lugar certo! 🎶🌍🎵
-    Como você está se sentindo hoje? Escolha abaixo o sentimento que mais lhe atrai no momento, e nós recomendaremos músicas incríveis para você! Aproveite ao máximo essa experiência única.
+   texxto_1 = """
+    Saaaalve! Se você está cansade de ouvir músicas que não te representam ou, simplesmente, quer conhecer novas músicas e artistas negres, você está no lugar certo! 🎶🌍🎵
+    """
+   texxto_2 = """
+    Meu nome é Marron, eu sou um BOT criado para celebrar e promover as africanidades brasileiras através da música. A ideia é: você escolhe um sentimento e eu te entrego músicas relacionadas a ele.
     """ 
+   texxto_3 = """Qual sentimento você gostaria de explorar?"""
    for nn in tam_linhas_sentimentos: 
     minha_string = "  ".join(lista_dividida[nn])
-    texxto = texxto + "\n "+minha_string 
+    texxto_3 = texxto_3 + "\n "+minha_string 
   #  print(texxto)
           # bot.send_message(mensagem,texxto)
-   bot.reply_to(mensagem,texxto)
+  
+   bot.reply_to(mensagem,texxto_1)
+   bot.send_message(mensagem.chat.id,texxto_2+texxto_3)
+  #  bot.send_message(mensagem.chat.id,texxto_3)
    respostas_usuario = mensagem.text
   #  print(respostas_usuario)## PEGA A ESCOLHA DO USUARIO
 
